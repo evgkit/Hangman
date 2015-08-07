@@ -12,9 +12,15 @@ public class Prompter {
   }
   
   public void play() {
-    while (mGame.getRemainingTries() > 0) {
+    while (mGame.getRemainingTries() > 0 && !mGame.isSolved()) {
       displayProgress();
       promptForGuess();
+    }
+
+    if (mGame.isSolved()) {
+      System.out.printf("Congratulations! You won with %d tries remaining", mGame.getRemainingTries());
+    } else {
+      System.out.printf("Boomer the word was %s.   :(\n", mGame.getAnswer());
     }
   }
   
