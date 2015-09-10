@@ -1,9 +1,9 @@
-package ru.evgkit;
+package ru.evgkit.Hangman;
 
 import java.util.Arrays;
 import java.util.Date;
 
-public class Treet implements Comparable{
+public class Treet implements Comparable {
     private String mAuthor;
     private String mDescription;
     private Date mCreationDate;
@@ -70,7 +70,7 @@ public class Treet implements Comparable{
         System.out.printf("This is a new Treet:  %s %n", firstTreet);
         System.out.println("The words are:");
 
-        for (String word: firstTreet.getWords()) {
+        for (String word : firstTreet.getWords()) {
             System.out.println(word);
         }
 
