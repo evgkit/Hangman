@@ -13,7 +13,7 @@ public class Game {
   }
   
   private char validateGuess(char letter) {
-    if (! Character.isLetter(letter)) {
+    if (!Character.isLetter(letter)) {
       throw new IllegalArgumentException("A letter is required");
     }
 
