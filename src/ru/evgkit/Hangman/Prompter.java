@@ -49,4 +49,6 @@ public class Prompter {
         );
     }
 
+    // TODO: As a prompter, I should know the name of the guesser so that things can appear more friendly.
+    // TODO: As a prompter, I should know the highest score, so that it can be used to encourage competition
 }
