@@ -1,4 +1,4 @@
-package ru.evgkit.Hangman;
+package ru.evgkit.Treet;
 
 import java.util.Arrays;
 import java.util.Date;
