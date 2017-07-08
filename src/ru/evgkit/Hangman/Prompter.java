@@ -1,26 +1,24 @@
 package ru.evgkit.Hangman;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Prompter {
-    private Game mGame;
+    private Game game;
 
     public Prompter(Game game) {
-        mGame = game;
+        this.game = game;
     }
 
     public void play() {
-        while (mGame.getRemainingTries() > 0 && !mGame.isSolved()) {
+        while (game.getRemainingTries() > 0 && !game.isSolved()) {
             displayProgress();
             promptForGuess();
         }
 
-        if (mGame.isSolved()) {
-            System.out.printf("Congratulations! You won with %d tries remaining", mGame.getRemainingTries());
+        if (game.isSolved()) {
+            System.out.printf("Congratulations! You won with %d tries remaining", game.getRemainingTries());
         } else {
-            System.out.printf("Boomer the word was %s.   :(\n", mGame.getAnswer());
+            System.out.printf("Boomer the word was %s.   :(\n", game.getAnswer());
         }
     }
 
@@ -28,18 +26,17 @@ public class Prompter {
         boolean isHit = false;
         boolean isValidGuess = false;
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(System.in);
 
         while (!isValidGuess) {
-
             try {
                 System.out.print("Enter a letter:  ");
-                String guessAsString = br.readLine();
+                String guessAsString = scanner.nextLine();
                 char guess = guessAsString.charAt(0);
 
-                isHit = mGame.applyGuess(guess);
+                isHit = game.applyGuess(guess);
                 isValidGuess = true;
-            } catch (IllegalArgumentException | IOException iae) {
+            } catch (IllegalArgumentException iae) {
                 System.out.printf("%s.  Please try again.\n", iae.getMessage());
             }
         }
@@ -47,9 +44,11 @@ public class Prompter {
     }
 
     public void displayProgress() {
-        System.out.printf("You have %d tries left to solve:  %s\n",
-                mGame.getRemainingTries(),
-                mGame.getCurrentProgress());
+        System.out.printf(
+            "You have %d tries left to solve:  %s\n",
+            game.getRemainingTries(),
+            game.getCurrentProgress()
+        );
     }
 
 }

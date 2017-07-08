@@ -2,14 +2,14 @@ package ru.evgkit.Hangman;
 
 public class Game {
     public static final int MAX_MISSES = 7;
-    private String mAnswer;
-    private String mHits;
-    private String mMisses;
+    private String answer;
+    private String hits;
+    private String misses;
 
     public Game(String answer) {
-        mAnswer = answer;
-        mHits = "";
-        mMisses = "";
+        this.answer = answer;
+        this.hits = "";
+        this.misses = "";
     }
 
     private char validateGuess(char letter) {
@@ -19,7 +19,7 @@ public class Game {
 
         letter = Character.toLowerCase(letter);
 
-        if (mMisses.indexOf(letter) >= 0 || mHits.indexOf(letter) >= 0) {
+        if (misses.indexOf(letter) >= 0 || hits.indexOf(letter) >= 0) {
             throw new IllegalArgumentException(letter + " has already been guessed");
         }
 
@@ -29,12 +29,12 @@ public class Game {
     public boolean applyGuess(char letter) {
         letter = validateGuess(letter);
 
-        boolean isHit = mAnswer.indexOf(letter) >= 0;
+        boolean isHit = answer.indexOf(letter) >= 0;
 
         if (isHit) {
-            mHits += letter;
+            hits += letter;
         } else {
-            mMisses += letter;
+            misses += letter;
         }
 
         return isHit;
@@ -43,10 +43,10 @@ public class Game {
     public String getCurrentProgress() {
         String progress = "";
 
-        for (char letter : mAnswer.toCharArray()) {
+        for (char letter : answer.toCharArray()) {
             char display = '-';
 
-            if (0 <= mHits.indexOf(letter)) {
+            if (0 <= hits.indexOf(letter)) {
                 display = letter;
             }
 
@@ -57,7 +57,7 @@ public class Game {
     }
 
     public int getRemainingTries() {
-        return MAX_MISSES - mMisses.length();
+        return MAX_MISSES - misses.length();
     }
 
     public boolean isSolved() {
@@ -65,6 +65,6 @@ public class Game {
     }
 
     public String getAnswer() {
-        return mAnswer;
+        return answer;
     }
 }
