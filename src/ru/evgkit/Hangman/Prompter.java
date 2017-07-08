@@ -22,28 +22,26 @@ public class Prompter {
         }
     }
 
-    public boolean promptForGuess() {
+    private boolean promptForGuess() {
         boolean isHit = false;
         boolean isValidGuess = false;
-
         Scanner scanner = new Scanner(System.in);
 
         while (!isValidGuess) {
             try {
                 System.out.print("Enter a letter:  ");
-                String guessAsString = scanner.nextLine();
-                char guess = guessAsString.charAt(0);
-
-                isHit = game.applyGuess(guess);
+                String guessInput = scanner.nextLine();
+                isHit = game.applyGuess(guessInput);
                 isValidGuess = true;
             } catch (IllegalArgumentException iae) {
                 System.out.printf("%s.  Please try again.\n", iae.getMessage());
             }
         }
+
         return isHit;
     }
 
-    public void displayProgress() {
+    private void displayProgress() {
         System.out.printf(
             "You have %d tries left to solve:  %s\n",
             game.getRemainingTries(),
